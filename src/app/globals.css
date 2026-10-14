@@ -1,26 +1,368 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-primary: #00668a;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #38bdf8;
+  --color-on-primary-container: #004965;
+  --color-inverse-primary: #7bd0ff;
+  --color-secondary: #006686;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #7ed4fd;
+  --color-on-secondary-container: #005b78;
+  --color-tertiary: #50616b;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #a2b4bf;
+  --color-on-tertiary-container: #364650;
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+  --color-primary-fixed: #c4e7ff;
+  --color-primary-fixed-dim: #7bd0ff;
+  --color-on-primary-fixed: #001e2c;
+  --color-on-primary-fixed-variant: #004c69;
+  --color-secondary-fixed: #c0e8ff;
+  --color-secondary-fixed-dim: #7bd1fa;
+  --color-on-secondary-fixed: #001e2b;
+  --color-on-secondary-fixed-variant: #004d66;
+  --color-tertiary-fixed: #d3e5f1;
+  --color-tertiary-fixed-dim: #b7c9d5;
+  --color-on-tertiary-fixed: #0c1e26;
+  --color-on-tertiary-fixed-variant: #384953;
+  --color-background: #faf8ff;
+  --color-on-background: #131b2e;
+  --color-surface-variant: #dae2fd;
+
+  --color-surface: #faf8ff;
+  --color-surface-dim: #d2d9f4;
+  --color-surface-bright: #faf8ff;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f2f3ff;
+  --color-surface-container: #eaedff;
+  --color-surface-container-high: #e2e7ff;
+  --color-surface-container-highest: #dae2fd;
+  --color-on-surface: #131b2e;
+  --color-on-surface-variant: #3e484f;
+  --color-inverse-surface: #283044;
+  --color-inverse-on-surface: #eef0ff;
+  --color-outline: #6e7980;
+  --color-outline-variant: #bdc8d1;
+  --color-surface-tint: #00668a;
+
+  /* Custom overrides for slate mappings to adapt existing component styles */
+  --color-slate-50: #faf8ff;
+  --color-slate-100: #ffffff;
+  --color-slate-150: #f2f3ff;
+  --color-slate-200: #eaedff;
+  --color-slate-300: #e2e7ff;
+  --color-slate-350: #dae2fd;
+  --color-slate-400: #131b2e;
+  --color-slate-500: #131b2e;
+  --color-slate-650: #131b2e;
+  --color-slate-700: #131b2e;
+  --color-slate-800: #131b2e;
+  --color-slate-900: #131b2e;
+
+  /* Aura Health theme color tokens mapped to Bespoke Clinical Sanctuary values */
+  --color-pearl: #faf8ff;
+  --color-cerulean: #38bdf8;
+  --color-deep-accent: #7ed4fd;
+  --color-deep-slate: #0f172a;
+  --color-slate-muted: #3e484f;
+
+  /* Aura Health spacing scale */
+  --spacing-huge: 160px;
+  --spacing-large: 80px;
+  --spacing-medium: 40px;
+  --spacing-small: 24px;
+
+  /* Aura Health font size scale */
+  --text-metadata: 10px;
+  --text-body: 17px;
+  --text-h3: 24px;
+  --text-h2: 48px;
+  --text-h1: 84px;
+
+  /* Border radius settings aligned with design.md and landing page requirements */
+  --radius-xl: 1rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
+
+  /* Font mappings */
+  --font-inter: var(--font-inter);
+  --font-display: var(--font-inter);
+  --font-headline: var(--font-inter);
+  --font-body: var(--font-inter);
+  --font-label: var(--font-inter);
+  --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+  --shadow-glass: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+  /* Custom overrides for user HTML classes */
+  --spacing-container-padding: 64px;
+  --spacing-max-width: 1440px;
+  --spacing-element-gap: 24px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@utility text-display-lg { font-size: 48px; line-height: 1.1; letter-spacing: -0.04em; font-weight: 700; }
+@utility text-body-lg { font-size: 18px; line-height: 1.6; letter-spacing: 0em; font-weight: 400; }
+@utility text-metadata { font-size: 11px; line-height: 1; letter-spacing: 0.15em; font-weight: 700; }
+@utility text-display-xl { font-size: 72px; line-height: 1.1; letter-spacing: -0.05em; font-weight: 700; }
+@utility text-body-md { font-size: 16px; line-height: 1.6; letter-spacing: 0em; font-weight: 400; }
+@utility text-headline-sm { font-size: 24px; line-height: 1.3; letter-spacing: -0.02em; font-weight: 600; }
+@utility text-headline-md { font-size: 32px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 600; }
+@utility text-display-lg-mobile { font-size: 36px; line-height: 1.1; letter-spacing: -0.03em; font-weight: 700; }
+
+@utility font-display-lg { font-family: var(--font-inter), sans-serif; }
+@utility font-body-lg { font-family: var(--font-inter), sans-serif; }
+@utility font-metadata { font-family: var(--font-inter), sans-serif; }
+@utility font-display-xl { font-family: var(--font-inter), sans-serif; }
+@utility font-body-md { font-family: var(--font-inter), sans-serif; }
+@utility font-headline-sm { font-family: var(--font-inter), sans-serif; }
+@utility font-headline-md { font-family: var(--font-inter), sans-serif; }
+@utility font-display-lg-mobile { font-family: var(--font-inter), sans-serif; }
+
+.text-huge-display {
+  font-size: 5rem !important;
+  line-height: 1 !important;
+  letter-spacing: -0.04em !important;
+  font-weight: 600 !important;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@media (min-width: 1024px) {
+  .text-huge-display {
+    font-size: 6.5rem !important;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-on-surface);
+  letter-spacing: -0.01em;
 }
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.chart-grid-line,
+svg line,
+svg path[stroke="#e2e8f0"],
+svg path[stroke="#f1f5f9"],
+svg path[stroke="#cbd5e1"] {
+  stroke: #e2e7ff !important;
+  stroke-dasharray: 4;
+}
+
+.clinical-gradient {
+  background: linear-gradient(135deg, #38bdf8 0%, #7ed4fd 100%);
+}
+
+.bg-mesh {
+  background-color: #faf8ff !important;
+  background-image: 
+      radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.04) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(125, 211, 252, 0.04) 0px, transparent 50%) !important;
+}
+
+
+
+/* Inputs, selects, and textareas */
+input, select, textarea {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  border-bottom: 2px solid transparent !important;
+  color: #131b2e !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transition: all 0.3s ease !important;
+  border-radius: 0.5rem !important;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none !important;
+  border: none !important;
+  border-bottom: 2px solid #e0f2fe !important; /* subtle #E0F2FE bottom-accent on focus */
+  box-shadow: none !important;
+}
+
+/* Button Component Overrides */
+button.bg-primary,
+.bg-primary,
+button.bg-gradient-to-r.from-primary,
+.bg-gradient-to-r.from-primary,
+button.bg-gradient-to-br.from-primary,
+.bg-gradient-to-br.from-primary {
+  background: #38bdf8 !important; /* Solid #38BDF8 background */
+  color: #ffffff !important;      /* White text */
+  font-weight: 700 !important;    /* Bold weight */
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0.5rem !important; /* 0.5rem (8px) corner radius */
+  transition: all 0.25s ease !important;
+}
+
+button.bg-primary:hover,
+.bg-primary:hover,
+button.bg-gradient-to-r.from-primary:hover,
+.bg-gradient-to-r.from-primary:hover,
+button.bg-gradient-to-br.from-primary:hover,
+.bg-gradient-to-br.from-primary:hover {
+  background: #7dd3fc !important; /* Ice Celeste hover */
+  color: #131b2e !important;      /* Deep slate text */
+  border: none !important;
+  box-shadow: none !important;
+}
+
+button.bg-slate-100,
+.bg-slate-100,
+button.bg-slate-50,
+.bg-slate-50 {
+  background: #7ed4fd !important; /* Ice Celeste */
+  color: #131b2e !important;      /* Deep Slate text */
+  font-weight: 700 !important;    /* Bold weight */
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0.5rem !important;
+  transition: all 0.25s ease !important;
+}
+
+button.bg-slate-100:hover,
+.bg-slate-100:hover,
+button.bg-slate-50:hover,
+.bg-slate-50:hover {
+  background: #e0f2fe !important; /* Pale Azure hover */
+  color: #131b2e !important;
+}
+
+/* Chips, Tags and Badges: #E0F2FE background with Deep Slate text */
+.bg-red-50,
+.bg-orange-50,
+.bg-blue-50,
+.bg-amber-50,
+.bg-emerald-50,
+.bg-primary-light\/50,
+.bg-primary-light,
+span[class*="rounded-xl"],
+span[class*="rounded-lg"] {
+  background-color: #e0f2fe !important;
+  color: #131b2e !important;
+  border-radius: 9999px !important; /* Pill-shaped radius (24px+) */
+  padding: 0.25rem 0.75rem !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.15em !important;
+  line-height: 1 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Force cursor pointer on interactive elements globally */
+button, 
+select, 
+input[type="button"], 
+input[type="submit"],
+input[type="reset"],
+[role="button"],
+a,
+Link {
+  cursor: pointer !important;
+}
+
+/* Typography Overrides */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-inter), sans-serif;
+  color: #131b2e;
+}
+
+/* Labels and utility metadata text */
+label,
+.text-\[9px\],
+.text-\[10px\],
+.text-\[11px\] {
+  text-transform: uppercase !important;
+  letter-spacing: 0.15em !important;
+  font-weight: 700 !important;
+  font-size: 11px !important;
+  line-height: 1 !important;
+}
+
+/* Lists & Tables Styling: Clean rows with no dividing lines & 16px of vertical padding */
+table {
+  border-collapse: collapse !important;
+  border: none !important;
+}
+
+tbody tr {
+  background-color: transparent !important;
+  transition: background-color 0.2s ease !important;
+}
+
+tbody tr:hover {
+  background-color: #ffffff !important; /* #FFFFFF background hover state for row */
+}
+
+tbody tr td,
+thead tr th {
+  padding-top: 1rem !important;    /* 16px */
+  padding-bottom: 1rem !important; /* 16px */
+  border: none !important;
+}
+
+/* Navigation active indicator block pseudo-element overrides */
+aside nav a {
+  color: #131b2e !important; /* High-contrast Deep Slate text */
+  background: transparent !important;
+  position: relative !important;
+  padding-left: 1.5rem !important;
+  border-radius: 0px !important;
+  box-shadow: none !important;
+  border: none !important;
+  transition: all 0.2s ease !important;
+}
+
+aside nav a:hover {
+  background-color: #e0f2fe !important; /* Hover state reveals #E0F2FE background tint */
+}
+
+aside nav a[class*="text-primary"],
+aside nav a[class*="bg-primary/10"],
+aside nav a.text-primary {
+  color: #131b2e !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+aside nav a[class*="text-primary"]::before,
+aside nav a[class*="bg-primary/10"]::before,
+aside nav a.text-primary::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 15% !important;
+  bottom: 15% !important;
+  width: 4px !important;
+  background-color: #38bdf8 !important; /* 4px vertical #38bdf8 indicator block */
+  border-radius: 9999px !important;
+}
+
+/* Shapes handled under @theme */
+
+/* Shimmer Animation for Skeletons */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.03) 25%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.03) 75%) !important;
+  background-size: 200% 100% !important;
+  animation: shimmer 1.5s infinite linear !important;
+}
+
